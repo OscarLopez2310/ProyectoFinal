@@ -1,10 +1,12 @@
 package co.edu.uptc.Modelo;
-import java.time.LocalTime;
-public abstract class Servicio {
-    private Integer personas;
+public abstract class Servicio {//Terminada
+    private int personas;
     private long duracion;
 
     public Servicio(int personas, long duracion) {
+        if (personas<1 || duracion<0){
+            throw new DatoInvalidoException("Datos invalidos.");
+        }
         this.personas = personas;
         this.duracion = duracion;
     }
@@ -13,16 +15,8 @@ public abstract class Servicio {
         return personas;
     }
 
-    public void setPersonas(Integer personas) {
-        this.personas = personas;
-    }
-
     public long getDuracion() {
         return duracion;
-    }
-
-    public void setDuracion(long duracion) {
-        this.duracion = duracion;
     }
 
     public abstract long tarifa();
