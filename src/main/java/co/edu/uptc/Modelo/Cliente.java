@@ -1,33 +1,21 @@
 package co.edu.uptc.Modelo;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 public class Cliente {
     private String nombre;
     private String documento;
     private String telefono;
-    private LocalDate fechaDeCliente;
-    private LocalDateTime fechaReserva;
+    private LocalDate desdeCuandoViene;
 
-    public Cliente(String nombre, String documento, String telefono, LocalDate fechaDeCliente, LocalDateTime fechaReserva) {
-        if (nombre==null || documento==null || telefono==null || fechaDeCliente==null){
+    public Cliente(String nombre, String documento, String telefono, LocalDate desdeCuandoViene) {
+        if (nombre==null || nombre.isBlank() || documento==null || documento.isBlank()
+                || telefono==null  || telefono.isBlank() || desdeCuandoViene==null){
             throw new DatoInvalidoException("Faltan datos del cliente.");
-        }
-        if (fechaReserva.getHour()>23 || fechaReserva.getHour()<11.30){
-            throw new DatoInvalidoException("El horario de atencion es de 11:30 AM a 11:00 pm");
         }
         this.nombre = nombre;
         this.documento = documento;
         this.telefono = telefono;
-        this.fechaDeCliente = fechaDeCliente;
-        this.fechaReserva = fechaReserva;
-    }
-
-    public LocalDateTime getFechaReserva() {
-        return fechaReserva;
-    }
-
-    public void setFechaReserva(LocalDateTime fechaReserva) {
-        this.fechaReserva = fechaReserva;
+        this.desdeCuandoViene = desdeCuandoViene;
     }
 
     public String getNombre() {
@@ -42,10 +30,6 @@ public class Cliente {
         return documento;
     }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
     public String getTelefono() {
         return telefono;
     }
@@ -54,11 +38,24 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public LocalDate getFechaDeCliente() {
-        return fechaDeCliente;
+    public LocalDate getdesdeCuandoViene() {
+        return desdeCuandoViene;
     }
 
-    public void setFechaDeCliente(LocalDate fechaDeCliente) {
-        this.fechaDeCliente = fechaDeCliente;
+    public long aniosAntiguedad(LocalDate fechaReserva){
+        long anios =0;
+        anios = ChronoUnit.YEARS.between(desdeCuandoViene, fechaReserva);
+        return anios;
+    }
+
+    public double calcularDescuento(LocalDate fechaReserva){
+        double descuento = 0;
+        long porcentaje = aniosAntiguedad(fechaReserva)*2;
+        if (porcentaje>15) {
+            descuento =  15;
+        }else {
+            descuento = (aniosAntiguedad(fechaReserva) * 2);
+        }
+        return descuento/100;
     }
 }

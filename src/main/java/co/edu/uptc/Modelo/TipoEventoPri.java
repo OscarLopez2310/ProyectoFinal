@@ -1,10 +1,10 @@
 package co.edu.uptc.Modelo;
-public enum TipoEventoPri {
+public enum TipoEventoPri {//terminada
     BASICO("Basico", 400000, 8),
     SUPERIOR("Superior", 650000, 12);
 
     private final String descripcion;
-    private final int costo;
+    private final long costo;
     private final int cantPersonas;
 
     TipoEventoPri(String descripcion, int costo, int cantPersonas) {
@@ -13,7 +13,7 @@ public enum TipoEventoPri {
         this.cantPersonas = cantPersonas;
     }
 
-    public int getCosto() {
+    public long getCosto() {
         return costo;
     }
 
