@@ -1,7 +1,7 @@
 package co.edu.uptc.Modelo;
 public enum TipoEventoPri {//terminada
-    BASICO("Basico", 400000, 8),
-    SUPERIOR("Superior", 650000, 12);
+    BASICO("BASICO", 400000, 8),
+    SUPERIOR("SUPERIOR", 650000, 12);
 
     private final String descripcion;
     private final long costo;

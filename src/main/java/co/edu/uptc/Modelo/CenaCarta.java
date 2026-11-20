@@ -13,4 +13,9 @@ public class CenaCarta extends Servicio{//Terminada
         t= TARIFA_BASE*getPersonas();
         return t;
     }
+
+    @Override
+    public String tipo(){
+        return "CENA, "+getPersonas();
+    }
 }
