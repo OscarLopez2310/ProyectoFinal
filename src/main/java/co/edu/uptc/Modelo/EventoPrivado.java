@@ -29,6 +29,12 @@ public class EventoPrivado extends Servicio implements Contratable { //Terminada
 
     @Override
     public String obtenerDescripcionContrato(){
-      return "Paquete contratado: "+ tipo.getDescripcion();
+      return "Paquete de tipo: " + tipo.getDescripcion() + " con un total de: " + getPersonas() + " personas.";
     }
+
+    @Override
+    public String tipo(){
+        return "EVENTO, "+ tipo.getDescripcion()+", "+ getPersonas();
+    }
+
 }

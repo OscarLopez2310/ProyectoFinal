@@ -5,7 +5,7 @@ public abstract class Servicio {//Terminada
 
     public Servicio(int personas, long duracion) {
         if (personas<1 || duracion<0){
-            throw new DatoInvalidoException("Datos invalidos.");
+            throw new DatoInvalidoException("La duracion y la cantidad de personas debe ser mayor de cero.");
         }
         this.personas = personas;
         this.duracion = duracion;
@@ -20,4 +20,6 @@ public abstract class Servicio {//Terminada
     }
 
     public abstract long tarifa();
+
+    public abstract String tipo();
 }

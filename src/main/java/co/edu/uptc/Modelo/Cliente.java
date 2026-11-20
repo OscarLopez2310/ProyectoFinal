@@ -1,7 +1,8 @@
 package co.edu.uptc.Modelo;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-public class Cliente {
+public class Cliente {//terminado
     private String nombre;
     private String documento;
     private String telefono;
@@ -22,10 +23,6 @@ public class Cliente {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getDocumento() {
         return documento;
     }
@@ -34,28 +31,24 @@ public class Cliente {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public LocalDate getdesdeCuandoViene() {
+    public LocalDate getDesdeCuandoViene() {
         return desdeCuandoViene;
     }
 
-    public long aniosAntiguedad(LocalDate fechaReserva){
-        long anios =0;
-        anios = ChronoUnit.YEARS.between(desdeCuandoViene, fechaReserva);
+    public long aniosAntiguedad(LocalDateTime fechaReserva){
+        long  anios = ChronoUnit.YEARS.between(desdeCuandoViene, fechaReserva);
         return anios;
     }
 
-    public double calcularDescuento(LocalDate fechaReserva){
-        double descuento = 0;
-        long porcentaje = aniosAntiguedad(fechaReserva)*2;
-        if (porcentaje>15) {
-            descuento =  15;
-        }else {
-            descuento = (aniosAntiguedad(fechaReserva) * 2);
+    public long calcularPorcentajeDescuento(LocalDateTime fechaReserva){
+        LocalDate fecha = fechaReserva.toLocalDate();
+        long porcentaje = 0;
+        if (!fecha.isBefore(desdeCuandoViene)) {
+             porcentaje = aniosAntiguedad(fechaReserva)*2;
+            if (porcentaje>15) {
+                porcentaje = 15;
+            }
         }
-        return descuento/100;
+        return porcentaje;
     }
 }

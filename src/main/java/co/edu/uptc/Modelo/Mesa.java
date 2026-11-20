@@ -1,5 +1,5 @@
 package co.edu.uptc.Modelo;
-public class Mesa {
+public class Mesa {//Terminada
     private String idmesa;
     private int capacidad;
 
